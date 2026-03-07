@@ -1,0 +1,9 @@
+{
+  "CREATE_USER": "User Create Successfully",
+  "UPDATE_USER": "User Update Successfully",
+  "DELETE_USER": "User Delete Successfully",
+  "NO_RECORD": "No Record Found",
+  "DELETE_ERROR": "No User Deleted",
+  "UPDATE_ERROR": "No User Updated",
+  "INTERNAL_SERVER": 500
+}
