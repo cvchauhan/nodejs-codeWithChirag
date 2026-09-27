@@ -1,11 +1,23 @@
-require("dotenv").config({ path: `.env.${process.env.SERVER}` });
+require("dotenv").config({ path: `.env` });
 
-const http = require("http");
 const PORT = process.env.PORT;
-console.log(PORT);
-const server = http.createServer((req, res) => {
-  res.end("Don't forgot to subscribe");
+const users = [];
+
+const express= require("express");
+const app = express();
+
+app.use(express.json());
+
+app.get("/users", (req, res) => {
+  res.status(200).json(users);
 });
-server.listen(PORT, () => {
+
+app.post("/users", (req, res) => {
+  const userData = req.body;  
+  users.push(userData);
+  res.status(200).json(users);
+});
+
+app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}`);
 });
