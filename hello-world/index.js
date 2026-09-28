@@ -8,14 +8,16 @@ const app = express();
 
 app.use(express.json());
 
+app.get("/users/:name/:userId", (req, res) => {
+  res.status(200).send(`User ID: ${req.params.userId}, Name: ${req.params.name}`);
+});
+
 app.get("/users", (req, res) => {
-  res.status(200).json(users);
+  res.status(200).send(`User ID: ${req.query.userId}`);
 });
 
 app.post("/users", (req, res) => {
-  const userData = req.body;  
-  users.push(userData);
-  res.status(200).json(users);
+ res.status(200).send(`User ID: ${req.body.userId} and Name: ${req.body.name}`);
 });
 
 app.listen(PORT, () => {
