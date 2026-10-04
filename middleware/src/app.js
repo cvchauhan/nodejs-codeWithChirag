@@ -1,29 +1,23 @@
 const express = require("express");
 const app = express();
-
-const looger = (req, res, next) => {
+const auth = require("./middleware/auth.middleware");
+const logger = (req, res, next) => {
     console.log("Request logs")
+    console.log(`${req.method} ${req.url}`);
     next();
 }
 
-const auth = (req, res, next) => {
-    const isValidUser = false; // Replace with your authentication logic
-    if (isValidUser) {
-        next();
-    } else {
-        res.status(401).send('Unauthorized');
-    }
-}
-
-
-app.get('/users', looger, (req, res) => {
+app.use(logger);
+app.get('/users', (req, res) => {    
     res.send('Get all users');
 })
 
-app.post('/users', auth, (req, res) => {
+app.post('/users', (req, res) => {    
     res.send('Create a new user');
 })
-
+app.post('/profile', auth, (req, res) => {    
+    res.send('Create a new profile');
+})
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
