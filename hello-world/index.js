@@ -6,7 +6,10 @@ const users = [];
 const express= require("express");
 const app = express();
 const userRoutes = require("./routes/user.routes");
-const productRoutes = require("./routes/product.route");
+const productRoutes = require("./routes/product.routes");
+
+
+
 
 app.use(express.json());
 app.use("/users", userRoutes);
